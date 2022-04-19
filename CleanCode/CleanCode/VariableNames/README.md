@@ -1,6 +1,7 @@
 # About
 
 Renamed bad variable names at 3 classes. 
+
 E.g. 12 of them:
 ~~~
 // example format
