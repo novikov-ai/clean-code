@@ -98,7 +98,7 @@ public class RequestHandler : IDisposable
     
     // 6.4 (2)
     // AppId - ApplicationId
-    private const string AppId = "611cd9aa3d908b7172086a05";
+    private const string ApplicationId = "611cd9aa3d908b7172086a05";
     
     ...
     
