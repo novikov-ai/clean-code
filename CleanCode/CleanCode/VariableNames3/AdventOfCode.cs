@@ -11,105 +11,106 @@ namespace CleanCode.VariableNames3
             string inputText = File.ReadAllText("Input09.txt");
             string[] puzzle = inputText.Split('\n');
 
-            // part1:
-
             int preamble = 25;
-            int start;
-            int end;
+            
             List<int> allNums = new List<int>();
 
             int invalidNum = -1;
             
-            // [7.2] result - success
-            bool success = false;
+            // 7.2 (1) ok - processingCompleted
+            bool processingCompleted = false;
 
-            for (int i = 0; i < puzzle.Length; i++)
+            // 7.3 (1) i - pieceOfPuzzle
+            for (int pieceOfPuzzle = 0; pieceOfPuzzle < puzzle.Length; pieceOfPuzzle++)
             {
                 if (invalidNum != -1)
                     break;
 
                 int num;
-                Int32.TryParse(puzzle[i], out num);
+                Int32.TryParse(puzzle[pieceOfPuzzle], out num);
                 allNums.Add(num);
 
-                if (i > (preamble - 1))
+                if (pieceOfPuzzle > preamble - 1)
                 {
-                    start = i - preamble;
-                    end = i - 1;
+                    // 7.4 (1) (firstPiece, lastPiece)
+                    var firstPiece = pieceOfPuzzle - preamble;
+                    var lastPiece = pieceOfPuzzle - 1;
 
-                    for (int j = start; j <= end; j++)
+                    for (int i = firstPiece; i <= lastPiece; i++)
                     {
-                        for (int k = start; k <= end; k++)
+                        for (int j = firstPiece; j <= lastPiece; j++)
                         {
-                            if (j == k)
+                            if (i == j)
                                 continue;
 
-                            if (allNums[j] + allNums[k] == allNums[i])
-                                success = true;
+                            if (allNums[i] + allNums[j] == allNums[pieceOfPuzzle])
+                                processingCompleted = true;
                         }
                     }
 
-                    if (!success)
+                    if (!processingCompleted)
                     {
-                        invalidNum = allNums[i];
+                        invalidNum = allNums[pieceOfPuzzle];
                         break;
                     }
-                    success = false;
+                    processingCompleted = false;
                 }
             }
 
-            // part 2:
-
             List<int> contiguousSet = new List<int>();
 
-            int sum = 0;
+            // 7.5 (6) sum - sumOfPuzzleNumbers
+            int sumOfPuzzleNumbers = 0;
             int setLength = 0;
 
-            int min = -1;
-            int max = -1;
+            // 7.4 (2) (minNumber, maxNumber)
+            int minNumber = -1;
+            int maxNumber = -1;
 
             int startFrom = 0;
 
-            for (int i = 0; i < puzzle.Length;)
+            for (int pieceOfPuzzle = 0; pieceOfPuzzle < puzzle.Length;)
             {
-                int num;
-                Int32.TryParse(puzzle[i], out num);
-                contiguousSet.Add(num);
-                sum += num;
+                // 7.5 (7) num - number
+                Int32.TryParse(puzzle[pieceOfPuzzle], out var number);
+                contiguousSet.Add(number);
+                sumOfPuzzleNumbers += number;
 
-                if (sum > invalidNum)
+                if (sumOfPuzzleNumbers > invalidNum)
                 {
                     contiguousSet.Clear();
-                    sum = 0;
+                    sumOfPuzzleNumbers = 0;
 
                     startFrom++;
-                    i = startFrom;
+                    pieceOfPuzzle = startFrom;
                 }
                 else
                 {
-                    if (sum == invalidNum && contiguousSet.Count > setLength)
+                    if (sumOfPuzzleNumbers == invalidNum && contiguousSet.Count > setLength)
                     {
                         contiguousSet.Sort();
 
-                        min = contiguousSet[0];
-                        max = contiguousSet[contiguousSet.Count - 1];
+                        minNumber = contiguousSet[0];
+                        maxNumber = contiguousSet[contiguousSet.Count - 1];
 
                         setLength = contiguousSet.Count;
-                        sum = 0;
+                        sumOfPuzzleNumbers = 0;
 
                         contiguousSet.Clear();
 
                         startFrom++;
-                        i = startFrom;
+                        pieceOfPuzzle = startFrom;
                     }
                     else
-                        i++;
+                        pieceOfPuzzle++;
                 }
             }
 
-            int result = min + max;
-
-            Console.WriteLine("Day 09: " + result);
+            // 7.5 [variable result is useless]
+            // int result = min + max;
+            // Console.WriteLine("Day 09: " + result);
+            
+            Console.WriteLine("Day 09: " + minNumber + maxNumber);
         }
     }
 }
