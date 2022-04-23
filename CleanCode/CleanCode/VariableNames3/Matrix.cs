@@ -22,7 +22,7 @@ namespace CleanCode.VariableNames3
             int rowPrevValue = 0;
             int rowPrevNum = 0;
 
-            // [7.1] sorted - isMatrixSorted
+            // 7.1 (1) sorted - isMatrixSorted
             bool isMatrixSorted = false;
             while (!isMatrixSorted)
             {
