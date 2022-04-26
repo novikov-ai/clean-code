@@ -10,7 +10,7 @@ Renamed bad class and method names at 6 classes according best practices:
 ~~~
 // example format
 
-// (X)
+// 3.X (Y)
 // <old name> - <new name>
 code usage
 ~~~
