@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace CleanCode.DataTypes
 {
-    static class Day08
+    static class AocDay8
     {
         private const string AccumulatorShortName = "acc";
         private const string JumpsShortName = "jmp";
         
         public static void ShowResult()
         {
-            string input = File.ReadAllText("Input08.txt");
+            string input = File.ReadAllText("input.txt");
             string[] puzzle = input.Split('\n');
 
             int accumulatorValue = 0;
