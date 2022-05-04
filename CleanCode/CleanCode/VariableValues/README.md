@@ -234,7 +234,7 @@ private List<ViewSchedule> PlaceSchedulesOnSheet(SheetLayout sheetLayout)
         if (!createdSchedules.Any())
         {
             throw new Exception("Отметьте хотя бы 1 спецификацию!");
-}
+        }
 
         txSchedules.Commit();
         return createdSchedules;
