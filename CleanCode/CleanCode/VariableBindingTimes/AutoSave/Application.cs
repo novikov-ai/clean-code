@@ -7,6 +7,10 @@ namespace CleanCode.VariableBindingTimes.AutoSave
 {
     public class Application : IExternalApplication
     {
+        // (2)
+        // compiling binding
+        // why: config file has only one relative path, which perfectly stored in a constant,
+        // but it also easy to maintain if you need to move file somewhere else
         private const string ConfigPath = "../../config.txt";
 
         public Result OnStartup(UIControlledApplication application)
@@ -15,6 +19,9 @@ namespace CleanCode.VariableBindingTimes.AutoSave
             // business logic removed
             // ...
 
+            // (3)
+            // binding while the program is running
+            // why: every application user has his own specific settings, which could change behavior of the executing program during the process
             UserConfig config = GetConfigFile();
 
             FileWatcher fileWatcher = new FileWatcher(config.AutoSaveInterval, config.AutoSyncInterval);

@@ -28,11 +28,11 @@ namespace CleanCode.VariableBindingTimes
 
                 XYZ leadingEndPoint = null;
                 XYZ secondEndPoint = null;
-                
+
                 // ...
                 // business logic removed
                 // ...
-                
+
                 using (Transaction tx = new Transaction(_doc, "Соединение элементов под углом"))
                 {
                     tx.Start();
@@ -40,16 +40,19 @@ namespace CleanCode.VariableBindingTimes
                     // ...
                     // business logic removed
                     // ...
-                    
+
                     var leadingElemWidthHeightDiameter = GetParametersWidthHeightDiameter(leadingElement);
 
                     double width = leadingElemWidthHeightDiameter.Item1?.AsDouble() ?? 0;
                     double height = leadingElemWidthHeightDiameter.Item2?.AsDouble() ?? 0;
-                    
+
+                    // (1)
+                    // in-place binding
+                    // why: variable describes tolerance value, which is always constant
                     const double offsetTolerance = 0.01;
 
                     bool isLeadOffsetFromSecond = Math.Abs(leadingEndPoint.Z - secondEndPoint.Z) > offsetTolerance;
-                    
+
                     if (_isRightAngle && isLeadOffsetFromSecond)
                         (width, height) = (height, width);
 
@@ -67,7 +70,7 @@ namespace CleanCode.VariableBindingTimes
             // ...
             // business logic removed
             // ...
-            
+
             return (null, null, null);
         }
     }

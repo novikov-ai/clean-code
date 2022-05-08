@@ -56,7 +56,8 @@ if (_isRightAngle && isLeadOffsetFromSecond)
 ~~~
 // (2)
 // compiling binding
-// why: config file has only one relative path, which perfectly stored in a constant, but it also easy to maintain if you need to move file somewhere else
+// why: config file has only one relative path, which perfectly stored in a constant, 
+// but it also easy to maintain if you need to move file somewhere else
 private const string ConfigPath = "../../config.txt";
 
 ...
