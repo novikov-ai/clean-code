@@ -62,6 +62,12 @@ private const string ConfigPath = "../../config.txt";
 
 ...
 
+// (2)
+// compiling binding
+if (File.Exists(ConfigPath)) { ... }
+
+...
+
 // (3)
 // binding while the program is running
 // why: every application user has his own specific settings, which could change behavior of the executing program during the process

@@ -43,6 +43,8 @@ namespace CleanCode.VariableBindingTimes.AutoSave
         {
             UserConfig userConfig = null;
 
+            // (2)
+            // compiling binding
             if (File.Exists(ConfigPath))
             {
                 try
