@@ -37,18 +37,15 @@ code usage
 
 ---
 
-### [LinesConnector class](https://github.com/novikov-ai/clean-code/blob/master/CleanCode/CleanCode/VariableBindingTimes/LinesConnector.cs)
+### [LinesConnector class](https://github.com/novikov-ai/clean-code/blob/master/CleanCode/CleanCode/VariableBindingTimes/Engineering/LinesConnector.cs)
 
 ~~~
 // (1)
 // in-place binding
-// why: variable describes tolerance value, which is always constant
-const double offsetTolerance = 0.01;
-
-bool isLeadOffsetFromSecond = Math.Abs(leadingEndPoint.Z - secondEndPoint.Z) > offsetTolerance;
-
-if (_isRightAngle && isLeadOffsetFromSecond)
-    (width, height) = (height, width);
+// why: variable not needed at this case,
+// auto property (ConnectionDirectionX) is set only once and doesn't change during the execution
+window.ConnectionDirectionX = 1;
+window.ShowUserDialog();
 ~~~
 
 ### [Application class](https://github.com/novikov-ai/clean-code/blob/master/CleanCode/CleanCode/VariableBindingTimes/AutoSave/Application.cs)

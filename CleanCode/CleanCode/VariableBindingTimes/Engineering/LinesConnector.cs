@@ -3,7 +3,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
 
-namespace CleanCode.VariableBindingTimes
+namespace CleanCode.VariableBindingTimes.Engineering
 {
     public class LinesConnector
     {
@@ -18,9 +18,27 @@ namespace CleanCode.VariableBindingTimes
 
         private void Connect()
         {
+            var window = new LinesConnectorWindow();
+            
+            // ...
+            // business logic removed
+            // ...
+            
             _connectingMode = !_connectingMode;
             if (!_connectingMode)
                 return;
+            
+            
+            // (1)
+            // in-place binding
+            // why: variable not needed at this case,
+            // auto property (ConnectionDirectionX) is set only once and doesn't change during the execution
+            window.ConnectionDirectionX = 1;
+            window.ShowUserDialog();
+            
+            // ...
+            // business logic removed
+            // ...
 
             while (_connectingMode)
             {
@@ -45,10 +63,7 @@ namespace CleanCode.VariableBindingTimes
 
                     double width = leadingElemWidthHeightDiameter.Item1?.AsDouble() ?? 0;
                     double height = leadingElemWidthHeightDiameter.Item2?.AsDouble() ?? 0;
-
-                    // (1)
-                    // in-place binding
-                    // why: variable describes tolerance value, which is always constant
+                    
                     const double offsetTolerance = 0.01;
 
                     bool isLeadOffsetFromSecond = Math.Abs(leadingEndPoint.Z - secondEndPoint.Z) > offsetTolerance;
