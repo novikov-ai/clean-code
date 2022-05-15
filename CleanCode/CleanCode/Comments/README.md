@@ -289,7 +289,6 @@ using (Transaction tx = new Transaction(doc, "Подсчет площади пр
 }
 ~~~
 
-
 ### [AssigningCodeWindow class](https://github.com/novikov-ai/clean-code/blob/master/CleanCode/CleanCode/Comments/Engineering/AssigningCodeWindow.cs)
 
 ~~~
