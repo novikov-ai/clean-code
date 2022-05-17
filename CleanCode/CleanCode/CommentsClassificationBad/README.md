@@ -34,7 +34,7 @@ Bad comments are classified:
 // new comment
 ~~~
 
-### [Params class](https://github.com/novikov-ai/clean-code/blob/master/CleanCode/CleanCode/CommentsClassificationBad/ParamsFiller.cs)
+### [ParamsFiller class](https://github.com/novikov-ai/clean-code/blob/master/CleanCode/CleanCode/CommentsClassificationBad/ParamsFiller.cs)
 
 ~~~
 public void AddSharedParams(Document doc)
