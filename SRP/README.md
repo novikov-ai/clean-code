@@ -78,66 +78,8 @@ private PushButtonData pushButtonDataWithImage(assemblyName, Picture picture)
 ~~~C#
  public class Player : Obstacle
 {
-    public void Move(Direction direction)
-    {
-        int oldPosition = PositionX;
-        bool directionX = true;
-
-        switch (direction)
-        {
-            case Direction.Right:
-                {
-                    PositionX = PositionX + 1 <= _field.Width ? PositionX + 1 : PositionX;
-                    break;
-                }
-
-            case Direction.Left:
-                {
-                    PositionX = PositionX - 1 > 0 ? PositionX - 1 : PositionX;
-                    break;
-                }
-
-            case Direction.Up:
-                {
-                    oldPosition = PositionY;
-                    directionX = false;
-                    PositionY = PositionY + 1 <= _field.Height ? PositionY + 1 : PositionY;
-                    break;
-                }
-
-            case Direction.Down:
-                {
-                    oldPosition = PositionY;
-                    directionX = false;
-                    PositionY = PositionY - 1 > 0 ? PositionY - 1 : PositionY;
-                    break;
-                }
-        }
-
-        foreach (var obstacle in _field.Obstacles)
-        {
-            if (obstacle is Bonus bonus && TryPick(bonus))
-            {
-                return;
-            }
-
-            if (obstacle is Monster monster && monster.CanAtack(this))
-            {
-                Alive = false;
-                return;
-            }
-
-            if (obstacle.DoesIntersect(this))
-            {
-                if (directionX)
-                    PositionX = oldPosition;
-                else
-                    PositionY = oldPosition;
-                return;
-            }
-        }
-    }
-
+    // ...
+    
     // Константы для перемещения игрока задаются непосредственно в нем, что нарушает принцип единой ответственности
     public enum Direction
     {
